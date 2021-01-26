@@ -11,6 +11,7 @@ import com.joshgm3z.chatapp.R;
 import com.joshgm3z.chatapp.chat.di.ChatMvpModule;
 import com.joshgm3z.chatapp.chat.di.DaggerChatComponent;
 import com.joshgm3z.chatapp.common.data.Chat;
+import com.joshgm3z.chatapp.common.utils.Logger;
 
 import java.util.List;
 
@@ -49,6 +50,8 @@ public class ChatActivity extends AppCompatActivity implements ChatContract.View
 
     @OnClick(R.id.btn_send)
     void onClick(){
+        Logger.entryLog();
+
         Editable text = mEtMessageInput.getText();
         if (text != null && !text.toString().trim().isEmpty()) {
             String message = text.toString().trim();

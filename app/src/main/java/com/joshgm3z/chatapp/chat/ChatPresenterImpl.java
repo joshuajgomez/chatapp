@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.joshgm3z.chatapp.common.data.Chat;
 import com.joshgm3z.chatapp.common.data.User;
+import com.joshgm3z.chatapp.common.utils.Logger;
 
 import javax.inject.Inject;
 
@@ -20,12 +21,13 @@ public class ChatPresenterImpl implements ChatContract.Presenter {
 
     @Override
     public void onSendButtonClick(String message) {
-        Log.i("Joshua", message);
+        Logger.log("message = [" + message + "]");
 
         User fromUser = new User("Joshua");
         User toUser = new User("Albin");
+        long time = System.currentTimeMillis();
 
-        mModel.sendChat(new Chat(message, System.currentTimeMillis(), fromUser, toUser));
+        mModel.sendChat(new Chat(message, time, fromUser, toUser));
     }
 
     @Override

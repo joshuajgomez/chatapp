@@ -3,6 +3,7 @@ package com.joshgm3z.chatapp.chat;
 import android.util.Log;
 
 import com.joshgm3z.chatapp.common.data.Chat;
+import com.joshgm3z.chatapp.common.utils.Logger;
 
 import javax.inject.Inject;
 
@@ -17,6 +18,6 @@ public class ChatModel implements ChatContract.Model {
 
     @Override
     public void sendChat(Chat chat) {
-        Log.i("Joshua", "sendChat " + chat.toString());
+        Logger.log("chat = [" + chat + "]");
     }
 }

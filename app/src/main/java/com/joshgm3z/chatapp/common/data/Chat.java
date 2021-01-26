@@ -3,13 +3,13 @@ package com.joshgm3z.chatapp.common.data;
 public class Chat {
 
     private String mMessage;
-    private long mDateTime;
+    private long mTime;
     private User mFromUser;
     private User mToUser;
 
-    public Chat(String message, long dateTime, User fromUser, User toUser) {
+    public Chat(String message, long time, User fromUser, User toUser) {
         mMessage = message;
-        mDateTime = dateTime;
+        mTime = time;
         mFromUser = fromUser;
         mToUser = toUser;
     }
@@ -38,19 +38,12 @@ public class Chat {
         mMessage = message;
     }
 
-    public long getDateTime() {
-        return mDateTime;
-    }
-
-    public void setDateTime(long dateTime) {
-        mDateTime = dateTime;
-    }
 
     @Override
     public String toString() {
         return "Chat{" +
                 "mMessage='" + mMessage + '\'' +
-                ", mDateTime=" + mDateTime +
+                ", mTime=" + mTime +
                 ", mFromUser=" + mFromUser +
                 ", mToUser=" + mToUser +
                 '}';
