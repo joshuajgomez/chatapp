@@ -57,6 +57,7 @@ public class ChatActivity extends AppCompatActivity implements ChatContract.View
             String message = text.toString().trim();
 
             mPresenter.onSendButtonClick(message);
+            mEtMessageInput.setText("");
         }
     }
 }
