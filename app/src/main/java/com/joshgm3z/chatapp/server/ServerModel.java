@@ -6,6 +6,8 @@ import com.joshgm3z.chatapp.common.utils.Logger;
 import com.joshgm3z.chatapp.server.retrofit.RetrofitService;
 import com.joshgm3z.chatapp.server.retrofit.response.SendMessageResponse;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import retrofit2.Call;
@@ -17,8 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServerModel implements ChatContract.Model {
 
     public static final String SERVER_URL = "http://10.0.2.2:8080";
-
-    private ChatContract.Model.OnChatAddedListener mChatAddedListener;
 
     private RetrofitService mRetrofitService;
 
@@ -36,7 +36,7 @@ public class ServerModel implements ChatContract.Model {
     }
 
     @Override
-    public void sendChat(Chat chat) {
+    public void sendChat(Chat chat, OnChatSentListener listener) {
         Logger.log("chat = [" + chat + "]");
         if (mRetrofitService != null) {
             Call<SendMessageResponse> send = mRetrofitService.send(chat);
@@ -44,13 +44,30 @@ public class ServerModel implements ChatContract.Model {
                 @Override
                 public void onResponse(Call<SendMessageResponse> call, Response<SendMessageResponse> response) {
                     Logger.log("send:onResponse = " + response.body());
+                    listener.onChatSent(response.body().getId());
                 }
 
                 @Override
                 public void onFailure(Call<SendMessageResponse> call, Throwable t) {
                     Logger.log("send:onFailure throwable = " + t.getMessage());
+                    listener.onChatSentFailed(t.getMessage());
                 }
             });
         }
+    }
+
+    @Override
+    public void getAllChats(OnChatListReceivedListener listener) {
+        mRetrofitService.listAll().enqueue(new Callback<List<Chat>>() {
+            @Override
+            public void onResponse(Call<List<Chat>> call, Response<List<Chat>> response) {
+                listener.onChatListReceived(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Chat>> call, Throwable t) {
+                listener.onChatListReceiveFailed(t.getMessage());
+            }
+        });
     }
 }
