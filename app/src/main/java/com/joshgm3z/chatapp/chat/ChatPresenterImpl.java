@@ -1,20 +1,19 @@
 package com.joshgm3z.chatapp.chat;
 
-import android.util.Log;
-
 import com.joshgm3z.chatapp.common.data.Chat;
 import com.joshgm3z.chatapp.common.data.User;
 import com.joshgm3z.chatapp.common.utils.Logger;
+import com.joshgm3z.chatapp.server.ServerModel;
 
 import javax.inject.Inject;
 
 public class ChatPresenterImpl implements ChatContract.Presenter {
 
     private ChatContract.View mView;
-    private ChatModel mModel;
+    private ServerModel mModel;
 
     @Inject
-    public ChatPresenterImpl(ChatContract.View view, ChatModel model) {
+    public ChatPresenterImpl(ChatContract.View view, ServerModel model) {
         mView = view;
         mModel = model;
     }
@@ -23,8 +22,8 @@ public class ChatPresenterImpl implements ChatContract.Presenter {
     public void onSendButtonClick(String message) {
         Logger.log("message = [" + message + "]");
 
-        User fromUser = new User("Joshua");
-        User toUser = new User("Albin");
+        String fromUser = "Joshua";
+        String toUser = "Albin";
         long time = System.currentTimeMillis();
 
         mModel.sendChat(new Chat(message, time, fromUser, toUser));

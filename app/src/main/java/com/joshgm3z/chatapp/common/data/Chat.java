@@ -1,51 +1,53 @@
 package com.joshgm3z.chatapp.common.data;
 
+import com.google.gson.annotations.Expose;
+
 public class Chat {
 
-    private String mMessage;
-    private long mTime;
-    private User mFromUser;
-    private User mToUser;
+    private String message;
+    private long time;
+    private String fromUser;
+    private String toUser;
 
-    public Chat(String message, long time, User fromUser, User toUser) {
-        mMessage = message;
-        mTime = time;
-        mFromUser = fromUser;
-        mToUser = toUser;
+    public Chat(String message, long time, String fromUser, String toUser) {
+        this.message = message;
+        this.time = time;
+        this.fromUser = fromUser;
+        this.toUser = toUser;
     }
 
-    public User getFromUser() {
-        return mFromUser;
+    public String getFromUser() {
+        return fromUser;
     }
 
-    public void setFromUser(User fromUser) {
-        mFromUser = fromUser;
+    public void setFromUser(String fromUser) {
+        this.fromUser = fromUser;
     }
 
-    public User getToUser() {
-        return mToUser;
+    public String getToUser() {
+        return toUser;
     }
 
-    public void setToUser(User toUser) {
-        mToUser = toUser;
+    public void setToUser(String toUser) {
+        this.toUser = toUser;
     }
 
     public String getMessage() {
-        return mMessage;
+        return message;
     }
 
     public void setMessage(String message) {
-        mMessage = message;
+        this.message = message;
     }
 
 
     @Override
     public String toString() {
         return "Chat{" +
-                "mMessage='" + mMessage + '\'' +
-                ", mTime=" + mTime +
-                ", mFromUser=" + mFromUser +
-                ", mToUser=" + mToUser +
+                "message='" + message + '\'' +
+                ", time=" + time +
+                ", fromUser='" + fromUser + '\'' +
+                ", toUser='" + toUser + '\'' +
                 '}';
     }
 }
