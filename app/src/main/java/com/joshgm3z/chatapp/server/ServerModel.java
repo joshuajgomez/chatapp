@@ -1,6 +1,7 @@
 package com.joshgm3z.chatapp.server;
 
 import com.joshgm3z.chatapp.chat.ChatContract;
+import com.joshgm3z.chatapp.common.constants.Config;
 import com.joshgm3z.chatapp.common.data.Chat;
 import com.joshgm3z.chatapp.common.utils.Logger;
 import com.joshgm3z.chatapp.server.retrofit.RetrofitService;
@@ -18,8 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServerModel implements ChatContract.Model {
 
-    public static final String SERVER_URL = "http://10.0.2.2:8080";
-
     private RetrofitService mRetrofitService;
 
     @Inject
@@ -30,7 +29,7 @@ public class ServerModel implements ChatContract.Model {
     public void init(){
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(SERVER_URL)
+                .baseUrl(Config.SERVER_URL)
                 .build();
         mRetrofitService = retrofit.create(RetrofitService.class);
     }
