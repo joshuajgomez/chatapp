@@ -1,6 +1,6 @@
 package com.joshgm3z.chatapp.signup;
 
-import com.joshgm3z.chatapp.common.data.User;
+import com.joshgm3z.chatapp.common.utils.Logger;
 import com.joshgm3z.chatapp.server.UserModel;
 
 import javax.inject.Inject;
@@ -20,12 +20,7 @@ public class SignUpPresenterImpl implements SignUpContract.Presenter,
 
     @Override
     public void onSignInClick(String phoneNumber) {
-        mModel.checkPhoneNumber(phoneNumber, this);
-    }
-
-    @Override
-    public void onUserFound() {
-
+        mModel.checkUsername(phoneNumber, this);
     }
 
     @Override
@@ -34,27 +29,27 @@ public class SignUpPresenterImpl implements SignUpContract.Presenter,
     }
 
     @Override
-    public void onUserFound(User user) {
-
+    public void onUserFound(int id) {
+        Logger.log("id = [" + id + "]");
     }
 
     @Override
-    public void onUserNotFound(String phoneNumber) {
-
+    public void onUserNotFound() {
+        Logger.log("");
     }
 
     @Override
     public void onUserCheckError(String message) {
-
+        Logger.log("message = [" + message + "]");
     }
 
     @Override
-    public void onUserRegistered(User user) {
-
+    public void onUserRegistered(int id) {
+        Logger.log("id = [" + id + "]");
     }
 
     @Override
     public void onUserRegisterError(String message) {
-
+        Logger.log("message = [" + message + "]");
     }
 }

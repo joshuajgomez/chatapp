@@ -17,20 +17,18 @@ public interface SignUpContract {
 
         void onSignInClick(String phoneNumber);
 
-        void onUserFound();
-
         void onSignUpClick(String phoneNumber, String name);
     }
 
     interface Model {
 
-        void checkPhoneNumber(String phoneNumber, OnPhoneNumberCheckedListener listener);
+        void checkUsername(String phoneNumber, OnPhoneNumberCheckedListener listener);
 
         interface OnPhoneNumberCheckedListener {
 
-            void onUserFound(User user);
+            void onUserFound(int id);
 
-            void onUserNotFound(String phoneNumber);
+            void onUserNotFound();
 
             void onUserCheckError(String message);
         }
@@ -39,7 +37,7 @@ public interface SignUpContract {
 
         interface onUserRegisteredListener {
 
-            void onUserRegistered(User user);
+            void onUserRegistered(int id);
 
             void onUserRegisterError(String message);
         }

@@ -1,12 +1,12 @@
 package com.joshgm3z.chatapp.server.retrofit.response;
 
-public class SendMessageResponse {
+public class UserAddedResponse {
 
     private int status;
     private String message;
     private int id;
 
-    public SendMessageResponse(int status, String message, int id) {
+    public UserAddedResponse(int status, String message, int id) {
         this.status = status;
         this.message = message;
         this.id = id;

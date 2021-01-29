@@ -2,7 +2,7 @@ package com.joshgm3z.chatapp.chat;
 
 import com.joshgm3z.chatapp.common.data.Chat;
 import com.joshgm3z.chatapp.common.utils.Logger;
-import com.joshgm3z.chatapp.server.ServerModel;
+import com.joshgm3z.chatapp.server.ChatModel;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ public class ChatPresenterImpl implements ChatContract.Presenter,
         ChatContract.Model.OnChatSentListener, ChatContract.Model.OnChatListReceivedListener {
 
     private ChatContract.View mView;
-    private ServerModel mModel;
+    private ChatModel mModel;
 
     @Inject
-    public ChatPresenterImpl(ChatContract.View view, ServerModel model) {
+    public ChatPresenterImpl(ChatContract.View view, ChatModel model) {
         mView = view;
         mModel = model;
     }

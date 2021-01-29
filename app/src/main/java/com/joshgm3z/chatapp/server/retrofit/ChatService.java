@@ -1,6 +1,7 @@
 package com.joshgm3z.chatapp.server.retrofit;
 
 import com.joshgm3z.chatapp.common.data.Chat;
+import com.joshgm3z.chatapp.server.retrofit.response.BasicResponse;
 import com.joshgm3z.chatapp.server.retrofit.response.SendMessageResponse;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
-public interface RetrofitService {
+public interface ChatService {
 
     @GET("/chat/test")
     Call<String> test();

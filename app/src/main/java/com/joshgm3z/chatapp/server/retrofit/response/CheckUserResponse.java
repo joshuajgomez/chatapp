@@ -1,15 +1,17 @@
 package com.joshgm3z.chatapp.server.retrofit.response;
 
-public class SendMessageResponse {
+public class CheckUserResponse {
 
     private int status;
     private String message;
     private int id;
+    private boolean isUserFound;
 
-    public SendMessageResponse(int status, String message, int id) {
+    public CheckUserResponse(int status, String message, int id, boolean isUserFound) {
         this.status = status;
         this.message = message;
         this.id = id;
+        this.isUserFound = isUserFound;
     }
 
     public int getStatus() {
@@ -20,16 +22,21 @@ public class SendMessageResponse {
         return message;
     }
 
+    public boolean isUserFound() {
+        return isUserFound;
+    }
+
     public int getId() {
         return id;
     }
 
     @Override
     public String toString() {
-        return "SendMessageResponse{" +
+        return "UserAddedResponse{" +
                 "status=" + status +
                 ", message='" + message + '\'' +
                 ", id=" + id +
+                ", isUserFound=" + isUserFound +
                 '}';
     }
 }

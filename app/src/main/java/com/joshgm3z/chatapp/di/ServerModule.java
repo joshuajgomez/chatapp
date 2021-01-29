@@ -1,6 +1,6 @@
 package com.joshgm3z.chatapp.di;
 
-import com.joshgm3z.chatapp.server.ServerModel;
+import com.joshgm3z.chatapp.server.ChatModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -9,8 +9,8 @@ import dagger.Provides;
 public class ServerModule {
 
     @Provides
-    ServerModel providesServerModel() {
-        return new ServerModel();
+    ChatModel providesServerModel() {
+        return new ChatModel();
     }
 
 }

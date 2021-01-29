@@ -4,7 +4,8 @@ import com.joshgm3z.chatapp.chat.ChatContract;
 import com.joshgm3z.chatapp.common.constants.Config;
 import com.joshgm3z.chatapp.common.data.Chat;
 import com.joshgm3z.chatapp.common.utils.Logger;
-import com.joshgm3z.chatapp.server.retrofit.RetrofitService;
+import com.joshgm3z.chatapp.server.retrofit.ChatService;
+import com.joshgm3z.chatapp.server.retrofit.response.BasicResponse;
 import com.joshgm3z.chatapp.server.retrofit.response.SendMessageResponse;
 
 import java.util.List;
@@ -17,12 +18,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ServerModel implements ChatContract.Model {
+public class ChatModel implements ChatContract.Model {
 
-    private RetrofitService mRetrofitService;
+    private ChatService mChatService;
 
     @Inject
-    public ServerModel() {
+    public ChatModel() {
         init();
     }
 
@@ -31,14 +32,14 @@ public class ServerModel implements ChatContract.Model {
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(Config.SERVER_URL)
                 .build();
-        mRetrofitService = retrofit.create(RetrofitService.class);
+        mChatService = retrofit.create(ChatService.class);
     }
 
     @Override
     public void sendChat(Chat chat, OnChatSentListener listener) {
         Logger.log("chat = [" + chat + "]");
-        if (mRetrofitService != null) {
-            Call<SendMessageResponse> send = mRetrofitService.send(chat);
+        if (mChatService != null) {
+            Call<SendMessageResponse> send = mChatService.send(chat);
             send.enqueue(new Callback<SendMessageResponse>() {
                 @Override
                 public void onResponse(Call<SendMessageResponse> call, Response<SendMessageResponse> response) {
@@ -57,7 +58,7 @@ public class ServerModel implements ChatContract.Model {
 
     @Override
     public void getAllChats(OnChatListReceivedListener listener) {
-        mRetrofitService.listAll().enqueue(new Callback<List<Chat>>() {
+        mChatService.listAll().enqueue(new Callback<List<Chat>>() {
             @Override
             public void onResponse(Call<List<Chat>> call, Response<List<Chat>> response) {
                 listener.onChatListReceived(response.body());

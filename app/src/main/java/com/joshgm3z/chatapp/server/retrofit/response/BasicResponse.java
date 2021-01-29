@@ -1,15 +1,13 @@
 package com.joshgm3z.chatapp.server.retrofit.response;
 
-public class SendMessageResponse {
+public class BasicResponse {
 
     private int status;
     private String message;
-    private int id;
 
-    public SendMessageResponse(int status, String message, int id) {
+    public BasicResponse(int status, String message) {
         this.status = status;
         this.message = message;
-        this.id = id;
     }
 
     public int getStatus() {
@@ -20,16 +18,11 @@ public class SendMessageResponse {
         return message;
     }
 
-    public int getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
-        return "SendMessageResponse{" +
+        return "BasicResponse{" +
                 "status=" + status +
                 ", message='" + message + '\'' +
-                ", id=" + id +
                 '}';
     }
 }
