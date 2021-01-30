@@ -17,7 +17,7 @@ public interface UserService {
     Call<CheckUserResponse> checkUsername(@Body User username);
 
     @POST("/user/add")
-    Call<UserAddedResponse> registerUser(@Body String username);
+    Call<UserAddedResponse> registerUser(@Body User username);
 
     @POST("/user/list_users")
     Call<List<User>> listUsers();

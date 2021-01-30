@@ -1,11 +1,10 @@
 package com.joshgm3z.chatapp.server;
 
-import com.joshgm3z.chatapp.chat.ChatContract;
+import com.joshgm3z.chatapp.pages.chat.ChatContract;
 import com.joshgm3z.chatapp.common.constants.Config;
 import com.joshgm3z.chatapp.common.data.Chat;
 import com.joshgm3z.chatapp.common.utils.Logger;
 import com.joshgm3z.chatapp.server.retrofit.ChatService;
-import com.joshgm3z.chatapp.server.retrofit.response.BasicResponse;
 import com.joshgm3z.chatapp.server.retrofit.response.SendMessageResponse;
 
 import java.util.List;

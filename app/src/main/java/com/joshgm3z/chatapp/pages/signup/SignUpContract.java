@@ -1,6 +1,6 @@
-package com.joshgm3z.chatapp.signup;
+package com.joshgm3z.chatapp.pages.signup;
 
-import com.joshgm3z.chatapp.common.data.User;
+import android.content.Context;
 
 public interface SignUpContract {
 
@@ -11,13 +11,19 @@ public interface SignUpContract {
         void hideLoadingMask();
 
         void showNameInput();
+
+        Context getContext();
+
+        void goToHome();
+
+        void showMessage(String message);
     }
 
     interface Presenter {
 
-        void onSignInClick(String phoneNumber);
+        void onSignInClick(String username);
 
-        void onSignUpClick(String phoneNumber, String name);
+        void onSignUpClick(String username);
     }
 
     interface Model {
@@ -26,18 +32,18 @@ public interface SignUpContract {
 
         interface OnPhoneNumberCheckedListener {
 
-            void onUserFound(int id);
+            void onUserFound(String username);
 
-            void onUserNotFound();
+            void onUserNotFound(String username);
 
             void onUserCheckError(String message);
         }
 
-        void registerUser(String phoneNumber, String userName, onUserRegisteredListener listener);
+        void registerUser(String userName, onUserRegisteredListener listener);
 
         interface onUserRegisteredListener {
 
-            void onUserRegistered(int id);
+            void onUserRegistered(String username);
 
             void onUserRegisterError(String message);
         }

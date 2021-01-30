@@ -1,7 +1,7 @@
-package com.joshgm3z.chatapp.chat.di;
+package com.joshgm3z.chatapp.pages.chat.di;
 
-import com.joshgm3z.chatapp.chat.ChatContract;
-import com.joshgm3z.chatapp.chat.ChatPresenterImpl;
+import com.joshgm3z.chatapp.pages.chat.ChatContract;
+import com.joshgm3z.chatapp.pages.chat.ChatPresenterImpl;
 import com.joshgm3z.chatapp.server.ChatModel;
 
 import dagger.Module;

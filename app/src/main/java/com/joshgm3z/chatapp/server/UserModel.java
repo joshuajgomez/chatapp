@@ -4,7 +4,7 @@ import com.joshgm3z.chatapp.common.constants.Config;
 import com.joshgm3z.chatapp.common.data.User;
 import com.joshgm3z.chatapp.server.retrofit.response.CheckUserResponse;
 import com.joshgm3z.chatapp.server.retrofit.response.UserAddedResponse;
-import com.joshgm3z.chatapp.signup.SignUpContract;
+import com.joshgm3z.chatapp.pages.signup.SignUpContract;
 import com.joshgm3z.chatapp.server.retrofit.UserService;
 
 import javax.inject.Inject;
@@ -36,9 +36,9 @@ public class UserModel implements SignUpContract.Model {
             public void onResponse(Call<CheckUserResponse> call, Response<CheckUserResponse> response) {
                 CheckUserResponse body = response.body();
                 if (body != null && body.isUserFound()) {
-                    listener.onUserFound(body.getId());
+                    listener.onUserFound(body.getUsername());
                 } else {
-                    listener.onUserNotFound();
+                    listener.onUserNotFound(body.getUsername());
                 }
             }
 
@@ -50,11 +50,16 @@ public class UserModel implements SignUpContract.Model {
     }
 
     @Override
-    public void registerUser(String phoneNumber, String userName, onUserRegisteredListener listener) {
-        mUserService.registerUser(userName).enqueue(new Callback<UserAddedResponse>() {
+    public void registerUser(String userName, onUserRegisteredListener listener) {
+        mUserService.registerUser(new User(userName)).enqueue(new Callback<UserAddedResponse>() {
             @Override
             public void onResponse(Call<UserAddedResponse> call, Response<UserAddedResponse> response) {
-                listener.onUserRegistered(response.body().getId());
+                UserAddedResponse body = response.body();
+                if (body != null) {
+                    listener.onUserRegistered(body.getUsername());
+                } else {
+                    listener.onUserRegisterError("Unable to register user");
+                }
             }
 
             @Override

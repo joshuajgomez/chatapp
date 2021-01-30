@@ -1,9 +1,8 @@
-package com.joshgm3z.chatapp.chat.di;
+package com.joshgm3z.chatapp.pages.chat.di;
 
-import com.joshgm3z.chatapp.chat.ChatActivity;
+import com.joshgm3z.chatapp.pages.chat.ChatActivity;
 import com.joshgm3z.chatapp.di.ActivityScope;
 import com.joshgm3z.chatapp.di.AppComponent;
-import com.joshgm3z.chatapp.di.ServerModule;
 
 import dagger.Component;
 

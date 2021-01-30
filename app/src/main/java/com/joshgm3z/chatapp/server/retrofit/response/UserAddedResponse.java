@@ -4,12 +4,12 @@ public class UserAddedResponse {
 
     private int status;
     private String message;
-    private int id;
+    private String username;
 
-    public UserAddedResponse(int status, String message, int id) {
+    public UserAddedResponse(int status, String message, String username) {
         this.status = status;
         this.message = message;
-        this.id = id;
+        this.username = username;
     }
 
     public int getStatus() {
@@ -20,8 +20,8 @@ public class UserAddedResponse {
         return message;
     }
 
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class UserAddedResponse {
         return "SendMessageResponse{" +
                 "status=" + status +
                 ", message='" + message + '\'' +
-                ", id=" + id +
+                ", username=" + username +
                 '}';
     }
 }

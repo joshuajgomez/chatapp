@@ -1,7 +1,8 @@
-package com.joshgm3z.chatapp.chat;
+package com.joshgm3z.chatapp.pages.chat;
 
 import com.joshgm3z.chatapp.common.data.Chat;
 import com.joshgm3z.chatapp.common.utils.Logger;
+import com.joshgm3z.chatapp.common.utils.SharedPrefs;
 import com.joshgm3z.chatapp.server.ChatModel;
 
 import java.util.List;
@@ -13,22 +14,26 @@ public class ChatPresenterImpl implements ChatContract.Presenter,
 
     private ChatContract.View mView;
     private ChatModel mModel;
+    private String mCurrentUser;
+    private String mChatUser;
 
     @Inject
     public ChatPresenterImpl(ChatContract.View view, ChatModel model) {
         mView = view;
         mModel = model;
+        mCurrentUser = SharedPrefs.getCurrentUser(mView.getContext());
     }
 
     @Override
     public void onSendButtonClick(String message) {
         Logger.log("message = [" + message + "]");
-
-        String fromUser = "Joshua";
-        String toUser = "Albin";
-        long time = System.currentTimeMillis();
-
-        mModel.sendChat(new Chat(message, time, fromUser, toUser), this);
+        mModel.sendChat(
+                new Chat(
+                        message,
+                        System.currentTimeMillis(),
+                        mCurrentUser,
+                        mChatUser),
+                this);
     }
 
     @Override
@@ -39,6 +44,11 @@ public class ChatPresenterImpl implements ChatContract.Presenter,
     @Override
     public void refreshView() {
         mModel.getAllChats(this);
+    }
+
+    @Override
+    public void setChatUser(String chatUser) {
+        mChatUser = chatUser;
     }
 
     @Override

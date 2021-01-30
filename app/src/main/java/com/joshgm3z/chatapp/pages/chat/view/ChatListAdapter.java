@@ -1,4 +1,4 @@
-package com.joshgm3z.chatapp.chat.view;
+package com.joshgm3z.chatapp.pages.chat.view;
 
 import android.view.LayoutInflater;
 import android.view.View;

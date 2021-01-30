@@ -1,8 +1,8 @@
-package com.joshgm3z.chatapp.signup.di;
+package com.joshgm3z.chatapp.pages.signup.di;
 
 import com.joshgm3z.chatapp.server.UserModel;
-import com.joshgm3z.chatapp.signup.SignUpContract;
-import com.joshgm3z.chatapp.signup.SignUpPresenterImpl;
+import com.joshgm3z.chatapp.pages.signup.SignUpContract;
+import com.joshgm3z.chatapp.pages.signup.SignUpPresenterImpl;
 
 import dagger.Module;
 import dagger.Provides;

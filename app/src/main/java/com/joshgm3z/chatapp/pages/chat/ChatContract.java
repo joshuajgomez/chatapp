@@ -1,4 +1,6 @@
-package com.joshgm3z.chatapp.chat;
+package com.joshgm3z.chatapp.pages.chat;
+
+import android.content.Context;
 
 import com.joshgm3z.chatapp.common.data.Chat;
 
@@ -12,11 +14,15 @@ public interface ChatContract {
         void onDestroy();
 
         void refreshView();
+
+        void setChatUser(String chatUser);
     }
 
     interface View {
         void updateChatList(List<Chat> chatList);
         void showMessage(String message);
+
+        Context getContext();
     }
 
     interface Model {
