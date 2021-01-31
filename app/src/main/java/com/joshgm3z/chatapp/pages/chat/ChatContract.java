@@ -20,6 +20,7 @@ public interface ChatContract {
 
     interface View {
         void updateChatList(List<Chat> chatList);
+
         void showMessage(String message);
 
         Context getContext();
@@ -27,15 +28,20 @@ public interface ChatContract {
 
     interface Model {
         void sendChat(Chat chat, ChatContract.Model.OnChatSentListener listener);
-        void getAllChats(ChatContract.Model.OnChatListReceivedListener listener);
+
+        void getAllChats(String username, OnChatListReceivedListener listener);
+
+        void getChatsBetweenUsers(String username1, String username2, OnChatListReceivedListener listener);
 
         interface OnChatSentListener {
             void onChatSent(int id);
+
             void onChatSentFailed(String message);
         }
 
         interface OnChatListReceivedListener {
             void onChatListReceived(List<Chat> chatList);
+
             void onChatListReceiveFailed(String message);
         }
     }

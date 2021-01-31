@@ -1,5 +1,6 @@
 package com.joshgm3z.chatapp.server;
 
+import com.joshgm3z.chatapp.common.data.User;
 import com.joshgm3z.chatapp.pages.chat.ChatContract;
 import com.joshgm3z.chatapp.common.constants.Config;
 import com.joshgm3z.chatapp.common.data.Chat;
@@ -56,8 +57,9 @@ public class ChatModel implements ChatContract.Model {
     }
 
     @Override
-    public void getAllChats(OnChatListReceivedListener listener) {
-        mChatService.listAll().enqueue(new Callback<List<Chat>>() {
+    public void getAllChats(String username, OnChatListReceivedListener listener) {
+        Logger.log("username = [" + username + "], listener = [" + listener + "]");
+        mChatService.listAllChatsForUser(username).enqueue(new Callback<List<Chat>>() {
             @Override
             public void onResponse(Call<List<Chat>> call, Response<List<Chat>> response) {
                 listener.onChatListReceived(response.body());
@@ -65,6 +67,29 @@ public class ChatModel implements ChatContract.Model {
 
             @Override
             public void onFailure(Call<List<Chat>> call, Throwable t) {
+                listener.onChatListReceiveFailed(t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    public void getChatsBetweenUsers(String username1, String username2, OnChatListReceivedListener listener) {
+        Logger.log("username1 = [" + username1 + "], username2 = [" + username2 + "], listener = [" + listener + "]");
+        mChatService.listChatsBetweenUsers(username1, username2).enqueue(new Callback<List<Chat>>() {
+            @Override
+            public void onResponse(Call<List<Chat>> call, Response<List<Chat>> response) {
+                Logger.log("call = [" + call.request().body() + "], response = [" + response.body() + "]");
+                List<Chat> chatList = response.body();
+                if (chatList != null) {
+                    listener.onChatListReceived(chatList);
+                } else {
+                    listener.onChatListReceiveFailed("Unable to receive messages");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Chat>> call, Throwable t) {
+                Logger.log("t = [" + t.getMessage() + "]");
                 listener.onChatListReceiveFailed(t.getMessage());
             }
         });

@@ -43,7 +43,7 @@ public class ChatPresenterImpl implements ChatContract.Presenter,
 
     @Override
     public void refreshView() {
-        mModel.getAllChats(this);
+        mModel.getChatsBetweenUsers(mCurrentUser, mChatUser, this);
     }
 
     @Override
