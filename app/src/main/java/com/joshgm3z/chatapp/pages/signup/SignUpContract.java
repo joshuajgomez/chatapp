@@ -26,27 +26,4 @@ public interface SignUpContract {
         void onSignUpClick(String username);
     }
 
-    interface Model {
-
-        void checkUsername(String phoneNumber, OnPhoneNumberCheckedListener listener);
-
-        interface OnPhoneNumberCheckedListener {
-
-            void onUserFound(String username);
-
-            void onUserNotFound(String username);
-
-            void onUserCheckError(String message);
-        }
-
-        void registerUser(String userName, onUserRegisteredListener listener);
-
-        interface onUserRegisteredListener {
-
-            void onUserRegistered(String username);
-
-            void onUserRegisterError(String message);
-        }
-    }
-
 }

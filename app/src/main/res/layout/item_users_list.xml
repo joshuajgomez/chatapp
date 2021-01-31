@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_users_list_pic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:padding="3dp"
+        android:src="@mipmap/ic_person" />
+
+    <TextView
+        android:id="@+id/tv_users_list_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_users_list_pic"
+        android:ellipsize="end"
+        android:paddingStart="15dp"
+        android:paddingEnd="20dp"
+        android:singleLine="true"
+        android:text="Default_user"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+</RelativeLayout>

@@ -1,7 +1,6 @@
 package com.joshgm3z.chatapp.server.retrofit;
 
 import com.joshgm3z.chatapp.common.data.User;
-import com.joshgm3z.chatapp.server.retrofit.response.BasicResponse;
 import com.joshgm3z.chatapp.server.retrofit.response.CheckUserResponse;
 import com.joshgm3z.chatapp.server.retrofit.response.UserAddedResponse;
 
@@ -19,7 +18,7 @@ public interface UserService {
     @POST("/user/add")
     Call<UserAddedResponse> registerUser(@Body User username);
 
-    @POST("/user/list_users")
-    Call<List<User>> listUsers();
+    @POST("/user/list_users_excluded")
+    Call<List<User>> getUsersListExcluding(@Body User username);
 
 }

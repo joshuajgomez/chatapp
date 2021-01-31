@@ -2,10 +2,13 @@ package com.joshgm3z.chatapp.server;
 
 import com.joshgm3z.chatapp.common.constants.Config;
 import com.joshgm3z.chatapp.common.data.User;
+import com.joshgm3z.chatapp.common.utils.Logger;
 import com.joshgm3z.chatapp.server.retrofit.response.CheckUserResponse;
 import com.joshgm3z.chatapp.server.retrofit.response.UserAddedResponse;
-import com.joshgm3z.chatapp.pages.signup.SignUpContract;
 import com.joshgm3z.chatapp.server.retrofit.UserService;
+
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -15,7 +18,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class UserModel implements SignUpContract.Model {
+public class UserModel implements UserModelCallBacks {
 
     private UserService mUserService;
 
@@ -30,7 +33,7 @@ public class UserModel implements SignUpContract.Model {
     }
 
     @Override
-    public void checkUsername(String username, OnPhoneNumberCheckedListener listener) {
+    public void checkUsername(String username, OnUsernameCheckedListener listener) {
         mUserService.checkUsername(new User(username)).enqueue(new Callback<CheckUserResponse>() {
             @Override
             public void onResponse(Call<CheckUserResponse> call, Response<CheckUserResponse> response) {
@@ -68,4 +71,26 @@ public class UserModel implements SignUpContract.Model {
             }
         });
     }
+
+    public void getUsersList(String currentUser, OnUsersListListener listener) {
+        Logger.log("currentUser = [" + currentUser + "]");
+        mUserService.getUsersListExcluding(new User(currentUser)).enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                List<User> userList = response.body();
+                if (userList != null) {
+                    listener.onUsersReceived(userList);
+                } else {
+                    listener.onUsersFetchError("Unable to fetch user list");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                listener.onUsersFetchError(t.getMessage());
+            }
+        });
+    }
+
+
 }

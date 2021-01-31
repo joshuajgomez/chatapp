@@ -17,6 +17,7 @@ import com.joshgm3z.chatapp.pages.chat.ChatActivity;
 import com.joshgm3z.chatapp.pages.home.di.DaggerHomeComponent;
 import com.joshgm3z.chatapp.pages.home.di.HomeMvpModule;
 import com.joshgm3z.chatapp.pages.home.view.HomeListAdapter;
+import com.joshgm3z.chatapp.pages.users.UsersActivity;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomeActivity extends AppCompatActivity implements HomeContract.View, HomeListAdapter.HomeListClickListener {
 
@@ -64,6 +66,11 @@ public class HomeActivity extends AppCompatActivity implements HomeContract.View
     protected void onResume() {
         super.onResume();
         mPresenter.onActivityResume();
+    }
+
+    @OnClick(R.id.iv_search_users)
+    void onClick(){
+        UsersActivity.launch(this);
     }
 
     @Override

@@ -12,15 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".pages.home.HomeActivity"></activity>
-        <activity android:name=".pages.signup.SignUpActivity">
+        <activity
+            android:name=".pages.users.UsersActivity"
+            android:noHistory="true"></activity>
+        <activity android:name=".pages.home.HomeActivity" />
+        <activity
+            android:name=".pages.signup.SignUpActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".pages.chat.ChatActivity"></activity>
+        <activity android:name=".pages.chat.ChatActivity" />
     </application>
 
 </manifest>

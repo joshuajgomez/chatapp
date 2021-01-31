@@ -3,12 +3,13 @@ package com.joshgm3z.chatapp.pages.signup;
 import com.joshgm3z.chatapp.common.utils.Logger;
 import com.joshgm3z.chatapp.common.utils.SharedPrefs;
 import com.joshgm3z.chatapp.server.UserModel;
+import com.joshgm3z.chatapp.server.UserModelCallBacks;
 
 import javax.inject.Inject;
 
 public class SignUpPresenterImpl implements SignUpContract.Presenter,
-        SignUpContract.Model.OnPhoneNumberCheckedListener,
-        SignUpContract.Model.onUserRegisteredListener {
+        UserModelCallBacks.OnUsernameCheckedListener,
+        UserModelCallBacks.onUserRegisteredListener {
 
     private final SignUpContract.View mView;
     private final UserModel mModel;
